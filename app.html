@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
   <head>
-    <title>App Name: A Coding Project By Anshul Wadhwa</title>
+    <title>ODDS & Evens: A Coding Project By Anshul Wadhwa</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -29,7 +29,7 @@
     <!-- Nav Section -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="img/anshul-wadhwa-small.png" width="30" height="30" class="d-inline-block align-text-top"> APP NAME</a>
+        <a class="navbar-brand" href="#"><img src="img/anshul-wadhwa-small.png" width="30" height="30" class="d-inline-block align-text-top"> ODDS & Evens</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -63,9 +63,54 @@
         </div>
       </div>
     </nav>
-    <!-- Main Section -->
-    <main class="flex-shrink-0">
-      <div class="container"></div>
+      <!-- Main Section-->
+      <main class="flex-shrink-0">
+        <div class="container mt-5 px-3">
+            <div class="row row-cols-1 row-cols-lg-2">
+                <div class="col col-lg-4 border-end border-2">
+                    <h1 class="display-6 fw-bold lh-1 mb-3">ODDS & EVENS: A Coding Project</h1>
+                    <h4 class="lead"> A javascript excercise using loops and logic statements. 
+                        Write a program that displays the even numbers between two input values in <strong>BOLD</strong>.
+                    </h4>
+                    <h2 class="mt-5 border-bottom border-2">Instructions</h2>
+                    <p>Enter a starting value and an ending value. Press the button to differentiate between the ODD and EVEN numbers.</p>
+                    <p>Notes:
+                        <ul>
+                            <li>The input values must be integers.</li>
+                            <li>The end value must be greater than the start value.</li>
+                            <li>The difference between the values must be no greater than 1000.</li>
+                        </ul>
+                    </p>
+                </div>
+                <div class="col col-lg-8">
+                    <div>
+                        <h5>Enter Values</h5>
+                        <form class="row gy-2 gx-3">
+                            <div class="col">
+                                <label class="form-label"><small>Start Value</small></label>
+                                <input id="startValue" type="number" class="form-control" placeholder="Start Value" value = 0 aria-label="Start Value">
+                            </div>
+                            <div class="col">
+                                <label class="form-label"><small>End Value</small></label>
+                                <input id="endValue" type="number" class="form-control" placeholder="End Value" value = 100 aria-label="End Value">
+                            </div>
+                            <div class="col-12 d-flex justify-content-end">
+                                <button id="btnSubmit" type="button" class="btn btn-dark btn-lg">Display the values</button>
+                            </div>
+                        </form>
+                        <h2 class="mt-5 border-bottom border-2">Results</h2>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-sm">
+                                <tbody id="results">
+                                    <!-- Results Go Here-->
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Footer Section -->
@@ -94,6 +139,9 @@
       integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
       crossorigin="anonymous"
     ></script>
-    <script src="js/site.js"></script>
+    <script src="/js/site.js"></script>
+    <script>
+      document.getElementById("btnSubmit").addEventListener("click", getValues);
+    </script>
   </body>
 </html>

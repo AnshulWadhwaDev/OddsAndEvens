@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
   <head>
-    <title>App Name: A Coding Project By Anshul Wadhwa</title>
+    <title>ODDS & Evens: A Coding Project By Anshul Wadhwa</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -30,7 +30,7 @@
     <!-- Nav Section -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="img/anshul-wadhwa-small.png" width="30" height="30" class="d-inline-block align-text-top"> APP NAME</a>
+        <a class="navbar-brand" href="#"><img src="img/anshul-wadhwa-small.png" width="30" height="30" class="d-inline-block align-text-top"> ODDS & Evens</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -69,26 +69,132 @@
     <!-- Main Section -->
     <main class="flex-shrink-0">
       <div class="container py-5 px-3 mt-5">
-        <h2 class="border-1 border-bottom border-dark">The Code for APP NAME.</h2>    
+        <h2 class="border-1 border-bottom border-dark">The Code for ODDS & Evens.</h2>    
         <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            //Call Hello World
-                            function HelloWorld() {
-                            alert("Hello World");
-                            }
+                          // CONTROLLER FUNCTION(S)
+// Get the values from the UI
+function getValues() {
+    // get values from the page
+    let startValue = document.getElementById("startValue").value;
+    let endValue = document.getElementById("endValue").value;
+
+    // convert to Numbers
+    startValue = Number(startValue);
+    endValue = Number(endValue);
+
+    // if valid input, generate and display numbers
+    if (validateInput(startValue,endValue)) {
+        // call generateNumbers
+        let numbers = generateNumbers(startValue, endValue);
+        // call displayNumbers
+        displayNumbers(numbers);
+    }
+}
+
+
+// LOGIC FUNCTION(S)
+// Generate numbers from the startValue to the endValue
+function generateNumbers(sValue, eValue) {
+    let numbers = [];
+
+    // get all numbers from start to end
+    for (let index = sValue; index <= eValue; index++) {
+        numbers.push(index);
+    }
+
+    return numbers;
+}
+// Validate input
+function validateInput(sValue, eValue) {
+    let output = true;
+
+    // check numbers are integer
+    if (!Number.isInteger(sValue) || !Number.isInteger(eValue)) {
+        alert("You must enter integers!")
+        output = false;
+    }
+
+    // check endValue is greater or equal to startValue
+    if (sValue > eValue) {
+        alert("End Value must be greater or equal to Start Value!")
+        output = false;
+    }
+
+    if (eValue - sValue > 1000) {
+        alert("The difference between values must be no greater than 1000!")
+        output = false;
+    }
+
+    return output;
+}
+
+
+// VIEW FUNCTION(S)
+// Display the numbers and mark even numbers BOLD
+function displayNumbers(numbers) {
+    let templateRows ="";
+
+    for (let index = 0; index < numbers.length; index++) {
+        let className = "even";
+        let num = numbers[index];
+
+        // if / by 2 with no remainder, then num is even
+        if (num % 2 == 0) {
+            className = "even";
+        }
+        else {
+            className = "odd";
+        }
+        // This does not display correctly in Prism, please view source code.
+        templateRows += `${num}`;
+    }
+
+    document.getElementById("results").innerHTML = templateRows;
+}
+                          
                         </code>
                     </pre>
                 </div>
+                <!-- Code Description-->
                 <div class="col-lg-4">
-                    <p>The Code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
-                </div>
-            </div>
+                  <p>The Code is structured in four functions.</p>
+                  <h5>getValues</h5>
+                  <p>getValues accepts(gets) the user input from the page. It utilises <strong>getElementById</strong> to pull values from the page,
+                      and then converts them to a 'Number' value. 
+                      The input values are validated with the <strong>validateInput</strong> function. If valid, the values are passed to the 
+                      <strong>generateNumbers</strong> function. The function <strong>generateNumbers</strong> returns an array
+                      of values and passes that array to the <strong>displayNumbers function.</strong></p>
+                  <h5>generateNumbers</h5>
+                  <p>generateNumbers takes in two parameters: startValue and endValue. An array variable named 'numbers' is created. 
+                      A for loop is used to generate all of the numbers between <strong>startValue</strong> and <strong>endValue</strong>.</p>
+                  <h5>validateInput</h5>
+                  <p>validateInput takes in two parameters: startValue and endValue, and returns a boolean value, dependent on three validation checks. 
+                      The validations are undertaken using separate 'if' statements and check the following:
+                      <ul>
+                          <li>The input values are integers.</li>
+                          <li><strong>endValue</strong> is greater or equal to <strong>startValue</strong>.</li>
+                          <li>The difference between the values is no greater than 1000.</li>
+                      </ul>
+                      If any inputs are not valid, then the function return a value of <strong>false</strong>, and a corresponding alert. If false, the 'if' statement in 
+                      <strong>getValues</strong>, which evaluates the output of <strong>validateInput</strong>, will not run the 
+                      <strong>generateNumbers</strong> and <strong>displayNumbers</strong> functions.
+                  </p>
+                  <h5>displayNumbers</h5>
+                  <p>displayNumbers takes in one parameter: numbers. The variable numbers is an array that holds values between <strong>startValue</strong>
+                  and <strong>endValue</strong>. We create a variable 'className' that holds the name of a CSS class that we use to bold the numbers.
+                  We create a variable templateRows that will hold the HTML we will write to the page.</p>
+                  <p>A for loop is used to check all of the numbers to see if they are odd or even. The remainder operator (%) is used to see if the
+                      number is divisible by two. If it returns zero then the number is even, if not (else), the number is odd. The correct className
+                      is injected into the HTML row for display. Each iteration of the loop adds to the templateRows variable. At the end of the loop
+                      the resulting HTML rows are written to the page.
+                  </p>
+              </div>
+          </div>
       </div>
-    </main>
+  </main>
 
    <!-- Footer Section -->
     <footer class="footer mt-auto py-3 sticky-footer">
